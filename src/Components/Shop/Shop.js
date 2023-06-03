@@ -11,11 +11,24 @@ const Shop = () => {
       .then((json) => setProducts(json));
   }, []);
 
+  function deleteProduct(product) {
+    const filter = products.filter(
+      (singleProduct) => product.id !== singleProduct.id
+    );
+    setProducts(filter);
+  }
+
   return (
     <div className="home-conatiner">
       <div className="shop-conatiner">
         {products?.map((product) => {
-          return <Products key={product.id} product={product}></Products>;
+          return (
+            <Products
+              key={product.id}
+              product={product}
+              deleteProduct={deleteProduct}
+            ></Products>
+          );
         })}
       </div>
       <div className="add-product">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState([]);
@@ -10,7 +10,19 @@ const ProductDetails = (props) => {
   }, []);
   const param = useParams();
   const { id } = param;
-  return <div>{product.title}</div>;
+  return (
+    <div>
+      <div className="image">
+        <img src={product.image} alt={product.title} />
+      </div>
+      <div className="description">
+        <h1>{product.title}</h1>
+        <h3>{product.description}</h3>
+      </div>
+
+      <Link to={"/"}>back</Link>
+    </div>
+  );
 };
 
 export default ProductDetails;
